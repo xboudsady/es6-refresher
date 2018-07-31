@@ -106,12 +106,64 @@ const {
     city
 } = profile.address
 
-console.log(street, city); // Returns, 40 Main st. Boston
+// console.log(street, city); // Returns, 40 Main st. Boston
 
 
 
 // CLASSES
+// In react you have 2 types of components. Functional components, and class based components. Class base components are alot more common, because that's where you can have state. Theyt are just an ES6 class.
+
+class Person {
+    constructor(name, age) { // Use constructor method to create properties
+        this.name = name;
+        this.age = age;
+    }
+
+    greet() {
+        return `Hello, my name is ${this.name} and I am ${this.age}`;
+    }
+}
+
+const person2 = new Person('John', 33);
+const person3 = new Person('Sarah', 28);
+
+console.log(person3.greet());
+
+
 
 // SUBCLASSES
+// We can extends to another class, to create a sublcass. This is common in React as react components, you'll need to be able to exetnds the core react component class. e.g. React.Components, this include alot of different methods that are called lifecyle method you can work with.
+
+class Customer extends Person {
+    constructor(name, age, balance) {
+        super(name, age); // Inherits its parent class properties,from extends Person above
+        this.balance = balance; // Addes a new properties
+    }
+
+    info() {
+        return `${this.name} owes ${this.balance}.00`;
+    }
+}
+
+const customer1 = new Customer('Kevin', 32, 300);
+
+console.log(customer1.info());
+
+
+
 
 // MODULES
+// Use with webpack to bundle our modules. Modules allow us to break our code into mulitple files to modularize them
+
+// file 1 (file1.js)
+export const name = 'Jeff';
+export const nums = [1, 2, 3];
+export default Person; // If we want to export a class from this file
+
+// file 2 (file2.js)
+import {
+    name,
+    nums
+} from './file1';
+
+import Person from './file1'; // Importing a class from file1
